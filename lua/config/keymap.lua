@@ -102,9 +102,6 @@ nmap('L', '<cmd>tabnext<cr>')
 
 
 
-map('n', '<C-d>', '<C-d>zz', opts)
-map('n', '<C-u>', '<C-u>zz', opts)
-
 -- -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
@@ -160,8 +157,9 @@ map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
 map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
 map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 
-map('n', '<C-d>', '<C-d>zz', opts)
-map('n', '<C-u>', '<C-u>zz', opts)
+-- -- page up and down
+-- map('n', '<C-d>', '<C-d>zz', opts)
+-- map('n', '<C-u>', '<C-u>zz', opts)
 
 
 local function toggle_light_dark_theme()
