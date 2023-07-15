@@ -172,11 +172,24 @@ local function toggle_light_dark_theme()
   end
 end
 
+
 --show kepbindings with whichkey
 --add your own here if you want them to
 --show up in the popup as well
 wk.register(
   {
+    n = {
+      name = 'neotest',
+      r = { ":lua require'neotest'.run.run()<cr>", 'run neotest'},
+      f = { ":lua require'neotest'.run.run(vim.fn.expand('%'))<cr>", 'run neotest on curent file'},
+      d = { ":lua require'neotest'.run.run({strategy = 'dap'})<cr>", 'debug nearest test'},
+      s = { ":lua require'neotest'.run.stop()<cr>", 'stop nearest neotest'},
+      n = { ":lua require'neotest'.run.attach()<cr>", 'run nearest neotest'},
+      o = { ":lua require'neotest'.output_panel.toggle()<cr>", 'toggle neotest output'},
+      x = { ":lua require'neotest'.jump.next({ status = 'failed' })<cr>", 'jump to next failure'},
+      p = { ":lua require'neotest'.jump.prev({ status = 'failed' })<cr>", 'jump to prev failure'},
+      u = { ":lua require'neotest'.summary.toggle()<cr>", 'toggle summary tree'},
+    },
     p = {
       name = 'explorer',
       v = {vim.cmd.Ex, 'file explorer' },
