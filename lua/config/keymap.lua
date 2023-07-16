@@ -530,12 +530,28 @@ wk.register({
   },
 }, { mode = 'v', prefix = "<leader>" })
 
-wk.register({
-  -- ['<c-e>'] = { "<esc>:FeMaco<cr>i", "edit code" },
-  ['<m-->'] = { ' <- ', "assign" },
-  ['<m-m>'] = { ' |>', "pipe" },
-  ['<m-i>'] = { '```{r}<cr>```<esc>O', "r code chunk" },
-  ['<cm-i>'] = { '<esc>o```{python}<cr>```<esc>O', "r code chunk" },
-  ['<m-I>'] = { '<esc>o```{python}<cr>```<esc>O', "r code chunk" },
-}, { mode = 'i' })
+
+vim.cmd('autocmd FileType * lua setKeybinds()')
+vim.cmd('autocmd VimEnter lua setKeybinds()')
+function setKeybinds()
+  local fileTy = vim.api.nvim_buf_get_option(0, "filetype")
+  local opts = { prefix = '<localleader>', buffer = 0 }
+
+  if fileTy == 'r' then
+    wk.register({
+      -- ['<c-e>'] = { "<esc>:FeMaco<cr>i", "edit code" },
+      ['<C-=>'] = { ' <- ', "assign" },
+      ['<C-.>'] = { ' |> ', "pipe" },
+    }, { mode = 'i' })
+  elseif fileTy == 'quarto' then
+    wk.register({
+      -- ['<c-e>'] = { "<esc>:FeMaco<cr>i", "edit code" },
+      ['<C-=>'] = { ' <- ', "assign" },
+      ['<C-.>'] = { ' |> ', "pipe" },
+      ['<C-r>'] = { '```{r}<cr>```<esc>O', "r code chunk" },
+      -- ['<cm-i>'] = { '<esc>o```{python}<cr>```<esc>O', "r code chunk" },
+      ['<C-p>'] = { '<esc>o```{python}<cr>```<esc>O', "python code chunk" },
+    }, { mode = 'i' })
+  end
+end
 

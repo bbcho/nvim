@@ -1,3 +1,5 @@
+-- see here: https://github.com/alpha2phi/neovim-pde/blob/07-jupyter/lua/pde/jupyter.lua`
+
 local CELL_MARKER_COLOR = "#C5C5C5"
 local CELL_MARKER = "^# %%%%"
 local CELL_MARKER_SIGN = "cell_marker_sign"
