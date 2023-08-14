@@ -320,6 +320,15 @@ end
 --show up in the popup as well
 wk.register(
   {
+    d = {
+      name = 'debugger',
+      b = { ":lua require'dap'.toggle_breakpoint()<cr>", 'debug breakpoint' },
+      c = { ":lua require'dap'.continue()<cr>", "debug" },
+      o = { ":lua require'dap'.step_over()<cr>", "debug over" },
+      i = { ":lua require'dap'.step_into()<cr>", "debug into" },
+      r = { ":lua require'dap'.repl_open()<cr>", "debug repl"},
+      u = { ":lua require'dapui'.toggle()<cr>", "debug into" },
+    },
     n = {
       name = 'neotest',
       r = { ":lua require'neotest'.run.run()<cr>", 'run neotest'},
@@ -335,7 +344,7 @@ wk.register(
     i = {
       name = 'iron/jupyter',
 
-      -- x = { execute_cell, "Execute Cell" },
+      x = { execute_cell, "Execute Cell" },
       i = {
         name = 'cell',
         c = { insert_code_cell, "Insert Code Cell" },
