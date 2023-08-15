@@ -176,6 +176,7 @@ return {
   -- },
   {
     "Vigemus/iron.nvim",
+    event = 'VeryLazy',
     branch = 'master',
     opts = function(_, opts)
      return {
