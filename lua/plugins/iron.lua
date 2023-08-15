@@ -176,37 +176,47 @@ return {
   -- },
   {
     "Vigemus/iron.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return {
+    branch = 'master',
+    opts = function(_, opts)
+     return {
         config = {
-          scratch_repl = true,
+        --   scratch_repl = true,
+        --   repl_definition = {
+        --     python = {
+        --       command = { "ipython",  "--no-autoindent" },
+        --       format = require("iron.fts.common").bracketed_paste,
+        --     },
+        --     sh = {
+        --       command = {"bash"}
+        --     }
+        --   },
+          repl_open_cmd = "vsplit",
+        },
+        -- -- If the highliht is on, you can change how it looks
+        -- -- For the available options, check nvim_set_hl
+        -- highlight = {
+        --   italic = true,
+        -- },
+        -- ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+        
+      }
+    end,
+    config = function(_, opts)
+      local iron = require "iron.core"
+      -- iron.setup(opts)
+      iron.setup {
+        config = {
           repl_definition = {
             python = {
-              command = { "ipython",  "--no-autoindent" },
-              format = require("iron.fts.common").bracketed_paste,
-            },
-            sh = {
-              command = {"bash"}
+              command = { "python" },
             }
           },
           repl_open_cmd = "vsplit",
         },
-        -- If the highliht is on, you can change how it looks
-        -- For the available options, check nvim_set_hl
-        highlight = {
-          italic = true,
-        },
-        ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-        
+        ignore_blank_lines = true,
       }
-    end,
-    -- keys = {
-    --   { "<leader>ix", execute_cell, desc="Execute Cell" },
-    -- },
-    config = function(_, opts)
-      local iron = require "iron.core"
-      iron.setup(opts)
+      print("hello")
     end,
   },
+
 }

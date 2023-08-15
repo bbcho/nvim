@@ -530,7 +530,7 @@ wk.register({
   ['p'] = { '"_dP', 'replace without overwriting reg' },
   i = {
     name = 'iron/jupyter',
-    s = { function() require("iron.core").visual_send() end, "Send" },
+    s = { function() require("iron.core").visual_send() end, "Visual Send" },
     L = { function() require("iron.marks").clear_hl() end, "Clear Highlight" },
     m = {
       name = 'mark',
