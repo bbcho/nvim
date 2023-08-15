@@ -178,7 +178,7 @@ return {
     "Vigemus/iron.nvim",
     event = 'VeryLazy',
     branch = 'master',
-    opts = function(_, opts)
+    opts = function()
      return {
         config = {
           scratch_repl = true,
