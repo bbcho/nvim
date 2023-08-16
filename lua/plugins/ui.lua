@@ -105,18 +105,18 @@ return {
       }
     end
   },
-  { 'nanozuki/tabby.nvim', config = function()
-    require 'tabby.tabline'.use_preset('tab_only')
-  end
-  },
-  { 'dstein64/nvim-scrollview', config = function()
-    require('scrollview').setup({
-      current_only = true,
-    })
-  end
-  },
-  -- { 'RRethy/vim-illuminate' }, -- highlight current word
-  -- filetree
+  -- { 'nanozuki/tabby.nvim', config = function()
+  --   require 'tabby.tabline'.use_preset('tab_only')
+  -- end
+  -- },
+  -- { 'dstein64/nvim-scrollview', config = function()
+  --   require('scrollview').setup({
+  --     current_only = true,
+  --   })
+  -- end
+  -- },
+  -- -- { 'RRethy/vim-illuminate' }, -- highlight current word
+  -- -- filetree
   { 'kyazdani42/nvim-tree.lua',
     keys = {
       { '<c-b>', ':NvimTreeToggle<cr>' },
@@ -139,29 +139,24 @@ return {
       }
     end
   },
-  -- show keybinding help window
-  { 'folke/which-key.nvim' },
-  { 'simrat39/symbols-outline.nvim', config = function()
-    require("symbols-outline").setup()
-  end },
-  -- terminal
-  { "akinsho/toggleterm.nvim", version = '*', config = function()
-    require("toggleterm").setup {
-      open_mapping = [[<c-\>]],
-      direction = 'float',
-    }
-  end
-  },
-  -- show diagnostics list
-  { "folke/trouble.nvim", config = function()
-    require("trouble").setup {}
-  end
-  },
-  { 'lukas-reineke/indent-blankline.nvim', config = function()
-    require("indent_blankline").setup {
-      show_current_context = true,
-      show_current_context_start = false,
-    }
-  end
-  },
+  -- -- terminal
+  -- { "akinsho/toggleterm.nvim", version = '*', config = function()
+  --   require("toggleterm").setup {
+  --     open_mapping = [[<c-\>]],
+  --     direction = 'float',
+  --   }
+  -- end
+  -- },
+  -- -- show diagnostics list
+  -- { "folke/trouble.nvim", config = function()
+  --   require("trouble").setup {}
+  -- end
+  -- },
+  -- { 'lukas-reineke/indent-blankline.nvim', config = function()
+  --   require("indent_blankline").setup {
+  --     show_current_context = true,
+  --     show_current_context_start = false,
+  --   }
+  -- end
+  -- },
 }

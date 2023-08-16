@@ -1,5 +1,6 @@
 return {
   { 'gnikdroy/projections.nvim',
+    branch = 'pre_release',
     config = function()
 
       vim.opt.sessionoptions:append("localoptions") -- Save localoptions to session file
