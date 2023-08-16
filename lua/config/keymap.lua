@@ -33,7 +33,21 @@ local map = vim.api.nvim_set_keymap
 
 -- functions for REPL and Jupyter
 local CELL_MARKER_COLOR = "#C5C5C5"
-local CELL_MARKER = "^# %%%%"
+
+vim.cmd('autocmd FileType * lua setCellMarker()')
+vim.cmd('autocmd VimEnter lua setCellMarker()')
+function setCellMarker()
+  local fileTy = vim.api.nvim_buf_get_option(0, "filetype")
+
+  if fileTy == 'python' then
+    CELL_MARKER = "^# %%%%"
+  elseif fileTy == 'quarto' then
+    CELL_MARKER = "^```"
+  elseif fileTy == 'r' then
+    CELL_MARKER = "^# %%%%"
+  end
+end
+
 local CELL_MARKER_SIGN = "cell_marker_sign"
 
 vim.api.nvim_set_hl(0, "cell_marker_hl", { bg = CELL_MARKER_COLOR })

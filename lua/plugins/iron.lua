@@ -187,6 +187,12 @@ return {
               command = { "ipython",  "--no-autoindent" },
               format = require("iron.fts.common").bracketed_paste,
             },
+            quarto = {
+              command = { "ipython",  "--no-autoindent" },
+            },
+            r = {
+              command = { "R" }
+            },
             sh = {
               command = {"bash"}
             }
