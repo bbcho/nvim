@@ -214,14 +214,21 @@ nmap('Q', '<Nop>')
 -- needs kitty (or other terminal) config:
 -- map shift+enter send_text all \x1b[13;2u
 -- map ctrl+enter send_text all \x1b[13;5u
-nmap('<c-cr>', '<Plug>SlimeSendCell')
-nmap('<s-cr>', '<Plug>SlimeSendCell')
-imap('<c-cr>', '<esc><Plug>SlimeSendCell<cr>i')
-imap('<s-cr>', '<esc><Plug>SlimeSendCell<cr>i')
+-- nmap('<c-cr>', '<Plug>SlimeSendCell')
+-- nmap('<s-cr>', '<Plug>SlimeSendCell')
+-- imap('<c-cr>', '<esc><Plug>SlimeSendCell<cr>i')
+-- imap('<s-cr>', '<esc><Plug>SlimeSendCell<cr>i')
+
+
+-- send code with ctrl+Enter
+-- just like in e.g. RStudio
+vim.keymap.set('n', "<A-cr>", "<cmd>lua require('iron.core').send_line()<CR>j")
+-- vim.keymap.set('n', "<C-cr>", "<cmd>:lua require'iron.core'.send_line()<cr>")
+-- vim.keymap.set('n', "<C-cr>", require('iron.core').send_line)
 
 -- send code with Enter and leader Enter
-vmap('<cr>', '<Plug>SlimeRegionSend')
-nmap('<leader><cr>', '<Plug>SlimeSendCell')
+-- vmap('<cr>', '<Plug>SlimeRegionSend')
+-- nmap('<leader><cr>', '<Plug>SlimeSendCell')
 
 
 -- keep selection after indent/dedent
@@ -245,18 +252,15 @@ nmap('n', "nzz")
 nmap('<c-d>', '<c-d>zz')
 nmap('<c-u>', '<c-u>zz')
 
--- move between splits and tabs
-nmap('<c-h>', '<c-w>h')
-nmap('<c-l>', '<c-w>l')
-nmap('<c-j>', '<c-w>j')
-nmap('<c-k>', '<c-w>k')
-nmap('H', '<cmd>tabprevious<cr>')
-nmap('L', '<cmd>tabnext<cr>')
-
+-- -- move between splits and tabs
+-- nmap('<c-h>', '<c-w>h')
+-- nmap('<c-l>', '<c-w>l')
+-- nmap('<c-j>', '<c-w>j')
+-- nmap('<c-k>', '<c-w>k')
+-- -- nmap('H', '<cmd>tabprevious<cr>')
+-- -- nmap('L', '<cmd>tabnext<cr>')
 
 -- Ben's Custom Keymaps
-
-
 
 -- -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -277,26 +281,29 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 
 
 -- Move to previous/next
-map('n', '<C-,>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<C-.>', '<Cmd>BufferNext<CR>', opts)
+map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
+-- -- Move to previous/next
+-- map('n', '<S-,>', '<Cmd>BufferPrevious<CR>', opts)
+-- map('n', '<S-.>', '<Cmd>BufferNext<CR>', opts)
 -- Re-order to previous/next
-map('n', '<C-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<C->>', '<Cmd>BufferMoveNext<CR>', opts)
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
 -- Goto buffer in position...
-map('n', '<C-1>', '<Cmd>BufferGoto 1<CR>', opts)
-map('n', '<C-2>', '<Cmd>BufferGoto 2<CR>', opts)
-map('n', '<C-3>', '<Cmd>BufferGoto 3<CR>', opts)
-map('n', '<C-4>', '<Cmd>BufferGoto 4<CR>', opts)
-map('n', '<C-5>', '<Cmd>BufferGoto 5<CR>', opts)
-map('n', '<C-6>', '<Cmd>BufferGoto 6<CR>', opts)
-map('n', '<C-7>', '<Cmd>BufferGoto 7<CR>', opts)
-map('n', '<C-8>', '<Cmd>BufferGoto 8<CR>', opts)
-map('n', '<C-9>', '<Cmd>BufferGoto 9<CR>', opts)
-map('n', '<C-0>', '<Cmd>BufferLast<CR>', opts)
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 -- Pin/unpin buffer
 -- map('n', '<C-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
-map('n', '<C-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -306,7 +313,7 @@ map('n', '<C-c>', '<Cmd>BufferClose<CR>', opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
-map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+map('n', '<A-p>', '<Cmd>BufferPick<CR>', opts)
 -- Sort automatically by...
 map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
 map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)

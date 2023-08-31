@@ -8,5 +8,4 @@ return {
   --     copilot_tab_fallback = "",
   --   }
   -- end
-  --
 }
