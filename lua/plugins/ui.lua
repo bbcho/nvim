@@ -124,7 +124,7 @@ return {
     config = function()
       require 'nvim-tree'.setup {
         disable_netrw       = true,
-        open_on_setup       = false,
+        -- open_on_setup       = false,
         update_focused_file = {
           enable = true,
         },
