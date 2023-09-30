@@ -182,6 +182,7 @@ return {
      return {
         config = {
           scratch_repl = true,
+          close_window_on_exit = true,
           repl_definition = {
             python = {
               command = { "ipython",  "--no-autoindent" },

@@ -283,6 +283,8 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 -- Move to previous/next
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 -- -- Move to previous/next
 -- map('n', '<S-,>', '<Cmd>BufferPrevious<CR>', opts)
 -- map('n', '<S-.>', '<Cmd>BufferNext<CR>', opts)
@@ -301,7 +303,7 @@ map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
 map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
 map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 -- Pin/unpin buffer
--- map('n', '<C-p>', '<Cmd>BufferPin<CR>', opts)
+-- map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 -- Wipeout buffer
@@ -389,7 +391,15 @@ wk.register(
         r = { function() require("iron.marks").drop_last() end, "Remove Mark" },
       },
       R = { "<cmd>IronRepl<cr>", "REPL" },
-      S = { "<cmd>IronRestart<cr>", "Restart" },
+      -- S = { "<cmd>IronFocus<cr><cmd>IronRestart<cr>", "Restart" },
+      S = { 
+        function() 
+          local ft = vim.api.nvim_buf_get_option(0, "filetype")
+          require("iron.core").repl_restart() 
+          require("iron.core").repl_for(ft) 
+        end, 
+        "Restart"
+      },
       F = { "<cmd>IronFocus<cr>", "Focus" },
       H = { "<cmd>IronHide<cr>", "Hide" }
     },
