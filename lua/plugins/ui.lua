@@ -159,10 +159,12 @@ return {
   --   require("trouble").setup {}
   -- end
   -- },
-  { 'lukas-reineke/indent-blankline.nvim', config = function()
-    require("indent_blankline").setup {
-      show_current_context = true,
-      show_current_context_start = false,
+  { 'lukas-reineke/indent-blankline.nvim', main="ibl", config = function()
+    require("ibl").setup {
+      scope = {
+        enabled = true,
+        show_start = false,
+      }
     }
   end
   },
