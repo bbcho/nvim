@@ -52,7 +52,8 @@ return {
           end,
         },
         mapping = {
-          ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+          -- ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ['<C-n>'] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
@@ -69,10 +70,11 @@ return {
           end, { "i", "s" }),
           ['<c-a>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({
+          ['<Tab>'] = cmp.mapping.confirm({
             select = true,
           }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
+          -- ["<Tab>"] = cmp.mapping(function(fallback)
+          ["<Down>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif has_words_before() then
@@ -81,7 +83,8 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
+          -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+          ["<Up>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             else
