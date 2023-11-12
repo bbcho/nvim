@@ -15,7 +15,6 @@ return {
       require('mason-lspconfig').setup {
         automatic_installation = true,
       }
-
       local lspconfig = require('lspconfig')
       local cmp_nvim_lsp = require('cmp_nvim_lsp')
       local util = require("lspconfig.util")

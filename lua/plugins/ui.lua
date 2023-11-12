@@ -2,7 +2,10 @@ return {
   -- telescope
   -- a nice seletion UI also to find and open files
   { 'nvim-telescope/telescope.nvim', 
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 
+      'nvim-lua/plenary.nvim',
+      -- 'sharkdp/fd'
+    },
     config = function()
     local telescope = require 'telescope'
     local actions = require('telescope.actions')

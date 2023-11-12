@@ -343,6 +343,8 @@ end
 --show up in the popup as well
 wk.register(
   {
+    -- m = { vim.lsp.buf.format(), 'format' },
+    m = { "<cmd>%!black - -q<cr>", "Format Black" },
     d = {
       name = 'debugger',
       b = { ":lua require'dap'.toggle_breakpoint()<cr>", 'debug breakpoint' },
