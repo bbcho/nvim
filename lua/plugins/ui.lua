@@ -123,8 +123,10 @@ return {
     },
     config = function()
       require 'nvim-tree'.setup {
-        disable_netrw       = true,
-        open_on_setup       = false,
+        auto_reload_on_write = true,
+        disable_netrw = true,
+        hijack_netrw = true,
+        -- open_on_setup       = false,
         update_focused_file = {
           enable = true,
         },
@@ -136,6 +138,11 @@ return {
         diagnostics         = {
           enable = true,
         },
+        actions              = {
+          open_file = {
+            resize_window = false,
+          },
+        }
       }
     end
   },
@@ -152,11 +159,13 @@ return {
   --   require("trouble").setup {}
   -- end
   -- },
-  -- { 'lukas-reineke/indent-blankline.nvim', config = function()
-  --   require("indent_blankline").setup {
-  --     show_current_context = true,
-  --     show_current_context_start = false,
-  --   }
-  -- end
-  -- },
+  { 'lukas-reineke/indent-blankline.nvim', main="ibl", config = function()
+    require("ibl").setup {
+      scope = {
+        enabled = true,
+        show_start = false,
+      }
+    }
+  end
+  },
 }

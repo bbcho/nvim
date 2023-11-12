@@ -182,10 +182,17 @@ return {
      return {
         config = {
           scratch_repl = true,
+          close_window_on_exit = true,
           repl_definition = {
             python = {
               command = { "ipython",  "--no-autoindent" },
               format = require("iron.fts.common").bracketed_paste,
+            },
+            quarto = {
+              command = { "ipython",  "--no-autoindent" },
+            },
+            r = {
+              command = { "R" }
             },
             sh = {
               command = {"bash"}

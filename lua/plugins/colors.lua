@@ -29,6 +29,7 @@ return {
       'javascript',
       'html',
       'r',
+      'R',
       'rmd',
       'qmd',
       'markdown',

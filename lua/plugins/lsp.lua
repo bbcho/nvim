@@ -93,7 +93,8 @@ return {
       lspconfig.r_language_server.setup {
         on_attach = on_attach,
         capabilities = capabilities,
-        flags = lsp_flags
+        flags = lsp_flags,
+        filetypes = { 'r', 'R', 'rmd', 'Rmd', 'RMD' }
       }
 
       lspconfig.emmet_ls.setup {
