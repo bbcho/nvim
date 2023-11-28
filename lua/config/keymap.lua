@@ -590,9 +590,9 @@ function setKeybinds()
       -- ['<c-e>'] = { "<esc>:FeMaco<cr>i", "edit code" },
       ['<C-=>'] = { ' <- ', "assign" },
       ['<C-.>'] = { ' |> ', "pipe" },
-      ['<C-r>'] = { '```{r}<cr>```<esc>O', "r code chunk" },
       -- ['<cm-i>'] = { '<esc>o```{python}<cr>```<esc>O', "r code chunk" },
-      ['<C-p>'] = { '<esc>o```{python}<cr>```<esc>O', "python code chunk" },
+      ['<C-p>'] = { '<esc>o```{python}<cr><cr>```<esc>O', "python code chunk" },
+      ['<C-r>'] = { '<esc>o```{r}<cr><cr>```<esc>O', "python code chunk" },
     }, { mode = 'i' })
   end
 end
