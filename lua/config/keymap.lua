@@ -239,7 +239,8 @@ vmap('<', '<gv')
 nmap('<esc>', '<cmd>noh<cr>')
 
 -- find files with telescope
-nmap('<c-p>', "<cmd>Telescope find_files<cr>")
+-- nmap('<c-p>', "<cmd>Telescope find_files<cr>")
+nmap('<c-b>', ':NvimTreeToggle<cr>')
 
 -- paste and without overwriting register
 vmap("<leader>p", "\"_dP")
@@ -257,8 +258,8 @@ nmap('<c-u>', '<c-u>zz')
 -- nmap('<c-l>', '<c-w>l')
 -- nmap('<c-j>', '<c-w>j')
 -- nmap('<c-k>', '<c-w>k')
--- -- nmap('H', '<cmd>tabprevious<cr>')
--- -- nmap('L', '<cmd>tabnext<cr>')
+-- nmap('H', '<cmd>tabprevious<cr>')
+-- nmap('L', '<cmd>tabnext<cr>')
 
 -- Ben's Custom Keymaps
 
@@ -345,6 +346,15 @@ wk.register(
   {
     -- m = { vim.lsp.buf.format(), 'format' },
     m = { "<cmd>%!black - -q<cr>", "Format Black" },
+    o = {
+      name = 'noice',
+      l = { function() require("noice").cmd("last") end, "Noice Last Message" },
+      h = { function() require("noice").cmd("history") end, "Noice History" },
+      a = { function() require("noice").cmd("all") end, "Noice All" },
+      d = { function() require("noice").cmd("dismiss") end, "Dismiss All" },
+      
+      -- s = { function() require("noice").redirect(vim.fn.getcmdline()) end, "Redirect Cmdline" },
+    },
     d = {
       name = 'debugger',
       b = { ":lua require'dap'.toggle_breakpoint()<cr>", 'debug breakpoint' },
@@ -368,8 +378,18 @@ wk.register(
     },
     i = {
       name = 'iron/jupyter',
-
-      x = { execute_cell, "Execute Cell" },
+      e = { function() require("iron.core").edit_repl() end, "Edit REPL" },
+      z = {
+        function()
+          execute_cell()
+        end, "Execute Cell"
+      },
+      x = { 
+        function()
+          execute_cell()
+          navigate_cell()
+        end, "Execute and Move to Next Cell" 
+      },
       i = {
         name = 'cell',
         c = { insert_code_cell, "Insert Code Cell" },
@@ -547,6 +567,10 @@ wk.register({
   ['<cm-i>']        = { 'o```{python}<cr>```<esc>O', "r code chunk" },
   ['<m-I>']         = { 'o```{python}<cr>```<esc>O', "r code chunk" },
 }, { mode = 'n' })
+
+wk.register({
+  ['C-o'] = { function() require("noice").redirect(vim.fn.getcmdline()) end, "Redirect Cmdline"},
+}, {mode = 'c'})
 
 
 -- visual mode

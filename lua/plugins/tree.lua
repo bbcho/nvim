@@ -1,8 +1,5 @@
 return {
   { 'kyazdani42/nvim-tree.lua',
-    keys = {
-      { '<c-b>', ':NvimTreeToggle<cr>' },
-    },
     config = function()
       require 'nvim-tree'.setup {
         auto_reload_on_write = true,
