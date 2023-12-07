@@ -19,18 +19,18 @@ return {
 
       -- optional
       -- more things to try:
-    --   {
-    --     "zbirenbaum/copilot-cmp",
-    --     after = { "copilot.lua" },
-    --     dependencies = { "zbirenbaum/copilot.lua" },
-    --     config = function()
-    --       require("copilot").setup({
-    --         suggestion = { enabled = true },
-    --         panel = { enabled = true },
-    --       })
-    --       require("copilot_cmp").setup()
-    --     end
-    --   },
+      {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        dependencies = { "zbirenbaum/copilot.lua" },
+        config = function()
+          require("copilot").setup({
+            suggestion = { enabled = true },
+            panel = { enabled = true },
+          })
+          require("copilot_cmp").setup()
+        end
+      },
 
     },
     
@@ -92,10 +92,60 @@ return {
     end,
     
     config = function(_, opts)
+      local lspkind = require "lspkind"
+      local cmp = require 'cmp'
+      local lspkind = require "lspkind"
+      lspkind.init()
       for _, source in ipairs(opts.sources) do
         source.group_index = source.group_index or 1
       end
       require("cmp").setup(opts)
+      cmp.setup({
+        formatting = {
+          format = lspkind.cmp_format {
+            with_text = true,
+            menu = {
+              otter = "[🦦]",
+              copilot = '[]',
+              luasnip = "[snip]",
+              nvim_lsp = "[LSP]",
+              buffer = "[buf]",
+              path = "[path]",
+              spell = "[spell]",
+              pandoc_references = "[ref]",
+              tags = "[tag]",
+              treesitter = "[TS]",
+              calc = "[calc]",
+              latex_symbols = "[tex]",
+              emoji = "[emoji]",
+            },
+          },
+        },
+        sources = {
+          { name = 'copilot',                keyword_length = 0, max_item_count = 3 },
+          { name = 'otter' }, -- for code chunks in quarto
+          { name = 'path' },
+          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'luasnip',                keyword_length = 3, max_item_count = 3 },
+          { name = 'pandoc_references' },
+          { name = 'buffer',                 keyword_length = 5, max_item_count = 3 },
+          { name = 'spell' },
+          { name = 'treesitter',             keyword_length = 5, max_item_count = 3 },
+          { name = 'calc' },
+          { name = 'latex_symbols' },
+          { name = 'emoji' },
+        },
+        -- view = {
+        --   -- entries = "native",
+        --   entries = "auto",
+        -- },
+        window = {
+          documentation = {
+            border = require 'misc.style'.border,
+          },
+        },
+      })
     end,
 
     -- config = function()
@@ -194,7 +244,7 @@ return {
     --       { name = 'emoji' },
     --     },
     --     view = {
-    --       entries = "native",
+    --       entries = "native", # or auto, left, right, top etc..
     --     },
     --     window = {
     --       documentation = {
