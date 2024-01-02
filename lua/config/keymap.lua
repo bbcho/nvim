@@ -280,18 +280,12 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 -- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 -- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
-
 -- Move to previous/next
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
-map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
--- -- Move to previous/next
--- map('n', '<S-,>', '<Cmd>BufferPrevious<CR>', opts)
--- map('n', '<S-.>', '<Cmd>BufferNext<CR>', opts)
 -- Re-order to previous/next
-map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+map('n', '<A-j>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A-k>', '<Cmd>BufferMoveNext<CR>', opts)
 -- Goto buffer in position...
 map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
 map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
@@ -304,9 +298,13 @@ map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
 map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
 map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 -- Pin/unpin buffer
--- map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<A-a>', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
+-- Magic buffer-picking mode
+map('n', '<A-p>', '<Cmd>BufferPick<CR>', opts)
+
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -315,8 +313,6 @@ map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 --                 :BufferCloseAllButCurrentOrPinned
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
--- Magic buffer-picking mode
-map('n', '<A-p>', '<Cmd>BufferPick<CR>', opts)
 -- Sort automatically by...
 map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
 map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
@@ -338,13 +334,13 @@ local function toggle_light_dark_theme()
   end
 end
 
-
 --show kepbindings with whichkey
 --add your own here if you want them to
 --show up in the popup as well
 wk.register(
   {
     -- m = { vim.lsp.buf.format(), 'format' },
+    r = { "<cmd>set rnu!<cr>", "Toggle Relative Line Numbers"},
     m = { "<cmd>%!black - -q<cr>", "Format Black" },
     o = {
       name = 'noice',
@@ -429,15 +425,15 @@ wk.register(
       name = 'explorer',
       v = {vim.cmd.Ex, 'file explorer' },
     },
-    c = {
-      name = 'code',
-      c = { ':SlimeConfig<cr>', 'slime config' },
-      n = { ':split term://$SHELL<cr>', 'new terminal' },
-      r = { ':split term://R<cr>', 'new R terminal' },
-      p = { ':split term://python<cr>', 'new python terminal' },
-      i = { ':split term://ipython<cr>', 'new ipython terminal' },
-      j = { ':split term://julia<cr>', 'new julia terminal' },
-    },
+    -- c = {
+    --   name = 'code',
+    --   c = { ':SlimeConfig<cr>', 'slime config' },
+    --   n = { ':split term://$SHELL<cr>', 'new terminal' },
+    --   r = { ':split term://R<cr>', 'new R terminal' },
+    --   p = { ':split term://python<cr>', 'new python terminal' },
+    --   i = { ':split term://ipython<cr>', 'new ipython terminal' },
+    --   j = { ':split term://julia<cr>', 'new julia terminal' },
+    -- },
     v = {
       name = 'vim',
       t = { toggle_light_dark_theme, 'switch theme' },
@@ -615,8 +611,8 @@ function setKeybinds()
       ['<C-=>'] = { ' <- ', "assign" },
       ['<C-.>'] = { ' |> ', "pipe" },
       -- ['<cm-i>'] = { '<esc>o```{python}<cr>```<esc>O', "r code chunk" },
-      ['<C-p>'] = { '<esc>o```{python}<cr><cr>```<esc>O', "python code chunk" },
-      ['<C-r>'] = { '<esc>o```{r}<cr><cr>```<esc>O', "python code chunk" },
+      ['<C-p>'] = { '<esc>o```{python}<cr>```<esc>O', "python code chunk" },
+      ['<C-r>'] = { '<esc>o```{r}<cr>```<esc>O', "python code chunk" },
     }, { mode = 'i' })
   end
 end

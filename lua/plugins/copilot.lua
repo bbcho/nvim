@@ -4,6 +4,7 @@ return {
     require 'copilot'.setup {
       suggestion = { enabled = false },
       panel = { enabled = false },
+      autorefresh = true,
       -- -- Copilot Setup
       -- copilot_no_tab_map = true,
       -- copilot_assume_mapped = true,
@@ -11,3 +12,5 @@ return {
     }
   end
 }
+
+

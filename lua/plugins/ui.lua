@@ -302,6 +302,13 @@ return {
   
       return opts
     end,
-  }
+  },
 
+    
+  {
+    "andrewferrier/wrapping.nvim",
+    config = function()
+        require("wrapping").setup()
+    end
+  },
 }

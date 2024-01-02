@@ -140,40 +140,41 @@ end
 
 
 return {
-  -- {
-  --   "goerz/jupytext.vim",
-  --   build = "pip install jupytext",
-  --   event = "VeryLazy",
-  --   dependencies = { "neovim/nvim-lspconfig" },
-  --   opts = {},
-  --   config = function()
-  --     -- The destination format: 'ipynb', 'markdown' or 'script', or a file extension: 'md', 'Rmd', 'jl', 'py', 'R', ..., 'auto' (script
-  --     -- extension matching the notebook language), or a combination of an extension and a format name, e.g. md:markdown, md:pandoc,
-  --     -- md:myst or py:percent, py:light, py:nomarker, py:hydrogen, py:sphinx. The default format for scripts is the 'light' format,
-  --     -- which uses few cell markers (none when possible). Alternatively, a format compatible with many editors is the 'percent' format,
-  --     -- which uses '# %%' as cell markers. The main formats (markdown, light, percent) preserve notebooks and text documents in a
-  --     -- roundtrip. Use the --test and and --test-strict commands to test the roundtrip on your files. Read more about the available
-  --     -- formats at https://jupytext.readthedocs.io/en/latest/formats.html (default: None)
-  --     vim.g.jupytext_fmt = "py:percent"
-  --
-  --     -- Autocmd to set cell markers
-  --     vim.api.nvim_create_autocmd({ "BufEnter" }, { -- "BufWriteCmd"
-  --       group = vim.api.nvim_create_augroup("au_show_cell_markers", { clear = true }),
-  --       pattern = { "*.py", "*.ipynb", "*.r", "*.jl", "*.scala" },
-  --       callback = function()
-  --         vim.schedule(show_cell_markers)
-  --       end,
-  --     })
-  --
-  --     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-  --       group = vim.api.nvim_create_augroup("au_check_cell_marker", { clear = true }),
-  --       pattern = { "*.py", "*.ipynb", "*.r", "*.jl", "*.scala" },
-  --       callback = function()
-  --         vim.schedule(show_cell_marker)
-  --       end,
-  --     })
-  --   end,
-  -- },
+  {
+    "GCBallesteros/jupytext.nvim",
+    build = "pip install jupytext",
+    event = "VeryLazy",
+    config = true,
+    -- dependencies = { "neovim/nvim-lspconfig" },
+    -- opts = {},
+    -- config = function()
+    --   -- The destination format: 'ipynb', 'markdown' or 'script', or a file extension: 'md', 'Rmd', 'jl', 'py', 'R', ..., 'auto' (script
+    --   -- extension matching the notebook language), or a combination of an extension and a format name, e.g. md:markdown, md:pandoc,
+    --   -- md:myst or py:percent, py:light, py:nomarker, py:hydrogen, py:sphinx. The default format for scripts is the 'light' format,
+    --   -- which uses few cell markers (none when possible). Alternatively, a format compatible with many editors is the 'percent' format,
+    --   -- which uses '# %%' as cell markers. The main formats (markdown, light, percent) preserve notebooks and text documents in a
+    --   -- roundtrip. Use the --test and and --test-strict commands to test the roundtrip on your files. Read more about the available
+    --   -- formats at https://jupytext.readthedocs.io/en/latest/formats.html (default: None)
+    --   vim.g.jupytext_fmt = "ipynb,py:percent"
+    --
+    --   -- Autocmd to set cell markers
+    --   vim.api.nvim_create_autocmd({ "BufEnter" }, { -- "BufWriteCmd"
+    --     group = vim.api.nvim_create_augroup("au_show_cell_markers", { clear = true }),
+    --     pattern = { "*.py", "*.ipynb", "*.r", "*.jl", "*.scala" },
+    --     callback = function()
+    --       vim.schedule(show_cell_markers)
+    --     end,
+    --   })
+    --
+    --   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --     group = vim.api.nvim_create_augroup("au_check_cell_marker", { clear = true }),
+    --     pattern = { "*.py", "*.ipynb", "*.r", "*.jl", "*.scala" },
+    --     callback = function()
+    --       vim.schedule(show_cell_marker)
+    --     end,
+    --   })
+    -- end,
+  },
   {
     "Vigemus/iron.nvim",
     event = 'VeryLazy',
@@ -183,11 +184,13 @@ return {
         config = {
           scratch_repl = true,
           close_window_on_exit = true,
+          buflisted = false,
           repl_definition = {
-            python = {
-              command = { "ipython",  "--no-autoindent" },
-              format = require("iron.fts.common").bracketed_paste,
-            },
+            -- python = {
+            --   command = { "ipython",  "--no-autoindent" },
+            --   format = require("iron.fts.common").bracketed_paste,
+            -- },
+            python = require("iron.fts.python").ipython,
             quarto = {
               command = { "ipython",  "--no-autoindent" },
             },

@@ -16,6 +16,7 @@ return {
       { 'L3MON4D3/LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
       { 'onsails/lspkind-nvim' },
+      { 'jmbuhr/otter.nvim' },
 
       -- optional
       -- more things to try:
@@ -24,10 +25,6 @@ return {
         after = { "copilot.lua" },
         dependencies = { "zbirenbaum/copilot.lua" },
         config = function()
-          require("copilot").setup({
-            suggestion = { enabled = true },
-            panel = { enabled = true },
-          })
           require("copilot_cmp").setup()
         end
       },
@@ -56,7 +53,7 @@ return {
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           ["<S-CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
@@ -66,12 +63,12 @@ return {
             fallback()
           end,
         }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "path" },
-          { name = "buffer" },
-        }),
+        -- sources = cmp.config.sources({
+        --   { name = "nvim_lsp" },
+        --   { name = "luasnip" },
+        --   { name = "path" },
+        --   { name = "buffer" },
+        -- }),
         -- formatting = {
         --   format = function(_, item)
         --     local icons = require("lazyvim.config").icons.kinds
@@ -95,9 +92,9 @@ return {
       local cmp = require 'cmp'
       local lspkind = require "lspkind"
       lspkind.init()
-      for _, source in ipairs(opts.sources) do
-        source.group_index = source.group_index or 1
-      end
+      -- for _, source in ipairs(opts.sources) do
+      --   source.group_index = source.group_index or 1
+      -- end
       require("cmp").setup(opts)
       cmp.setup({
         formatting = {
@@ -140,6 +137,9 @@ return {
         --   entries = "auto",
         -- },
         window = {
+          completion = {
+            border = require 'misc.style'.border,
+          },
           documentation = {
             border = require 'misc.style'.border,
           },

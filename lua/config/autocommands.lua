@@ -23,3 +23,13 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 }
 )
 
+-- flips between relative and absolute line numbers
+-- for insert and normal mode
+vim.api.nvim_exec([[
+  augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+  augroup END
+]], false)
+
