@@ -67,3 +67,6 @@ vim.opt.cmdheight = 0
 
 vim.opt.number = true -- show linenumbers
 vim.wo.relativenumber = true
+vim.opt.cursorline = true
+
+

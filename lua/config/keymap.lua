@@ -1,6 +1,9 @@
 -- keymaps start at line 172
 local wk = require("which-key")
 
+-- change line number highlight colors
+vim.cmd('highlight CursorLineNr guifg=yellow gui=bold')
+
 P = function(x)
   print(vim.inspect(x))
   return (x)
@@ -539,7 +542,11 @@ wk.register(
     x = {
       name = 'execute',
       x = { ':w<cr>:source %<cr>', 'file' }
-    }
+    },
+    t = {
+        name = 'terminal',   
+        t = { "<cmd>terminal<cr>i", "Open terminall" },
+        },
   }, { mode = 'n', prefix = '<leader>' }
 )
 
