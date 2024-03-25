@@ -145,6 +145,10 @@ return {
           },
         },
       })
+        -- for friendly snippets
+        require("luasnip.loaders.from_vscode").lazy_load()
+        -- for custom snippets
+        require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snips" } })
     end,
 
     -- config = function()

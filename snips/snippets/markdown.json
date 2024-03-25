@@ -360,5 +360,56 @@
     "body": "Fig. \\ref{fig-$1}",
     "description": "refer to a label for a wrap figure",
     "prefix": "@wrap"
+  },
+  "start": {
+      "body": [
+        "---",
+        "title: \"Quarto Document\"",
+        "description: |",
+        "  Personal Notes",
+        "author: \"Ben Cho\"",
+        "format: ",
+        "    # pptx:",
+        "        # reference-doc: template.pptx",
+        "   # html:",
+        "   #      toc: true",
+        "   #      number_sections: true",
+        "   #      theme: united",
+        "   #      highlight: pygments",
+        "   #      colorlinks: true",
+        "   #      page-layout: full",
+        "   revealjs:",
+        "        # logo: \"QI.png\"",
+        "        smaller: true",
+        "        # theme: [custom.scss]",
+        "        # css: style.css",
+        "        footer: \"Quantim Intelligence\"",
+        "execute:",
+        "    cache: false",
+        "    # cache-lazy: false",
+        "    echo: false",
+        "    error: false",
+        "    warning: false",
+        "# jupyter: python3",
+        "---"
+      ],
+    "description": "Start a new document",
+    "prefix": "start"
+  },
+  "column": {
+      "body": [
+          ":::: {.columns}",
+          "::: {.column width=50%}",
+          "",
+          ":::",
+          "",
+          "::: {.column width=50%}",
+          "",
+          ":::",
+          "::::"
+      ],
+      "description": "Markdown Columns",
+      "prefix": "col"
   }
+
 }

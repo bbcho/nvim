@@ -25,13 +25,13 @@ return {
     }
   end
   },
-  { 'ttys3/nvim-blamer.lua', config = function()
-    require('nvim-blamer').setup {
-      enable = true,
-      format = '%committer │ %committer-time-human │ %summary',
-    }
-  end
-  }
+  -- { 'ttys3/nvim-blamer.lua', config = function()
+  --   require('nvim-blamer').setup {
+  --     enable = true,
+  --     format = '%committer │ %committer-time-human │ %summary',
+  --   }
+  -- end
+  -- }
   -- { 'f-person/git-blame.nvim' },
   -- github PRs and the like with gh-cli
   -- { 'pwntester/octo.nvim', config = function()
