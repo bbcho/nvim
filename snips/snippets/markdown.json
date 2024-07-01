@@ -353,7 +353,7 @@
     "description": "refer to a label for a wrap figure",
     "prefix": "@wrap"
   },
-  "quarto start": {
+  "start quarto": {
     "body": [
       "---",
       "title: \"Quarto Document\"",
@@ -386,7 +386,20 @@
       "---"
     ],
     "description": "Start a new document",
-    "prefix": "start"
+    "prefix": "start quarto"
+  },
+  "start pandas": {
+    "prefix": ["start pandas"],
+    "body": [
+      "import pandas as pd",
+      "import numpy as np",
+      "import matplotlib.pyplot as plt",
+      "import plotly.graph_objects as go",
+      "",
+      "pd.set_option('display.max_columns', None)",
+      "pd.set_option('display.max_rows', None)",
+      ""
+    ]
   },
   "column": {
     "body": [
