@@ -353,7 +353,7 @@
     "description": "refer to a label for a wrap figure",
     "prefix": "@wrap"
   },
-  "start": {
+  "quarto start": {
     "body": [
       "---",
       "title: \"Quarto Document\"",
