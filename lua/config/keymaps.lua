@@ -13,6 +13,8 @@ vim.keymap.set("n", "<leader>qc", '<cmd>lua require("quarto").quartoClosePreview
 ----------------------------------
 
 vim.keymap.set("n", "<leader>mm", "<cmd>lua execute_cell()<CR>", { silent = true, desc = "Execute Cell" })
+vim.keymap.set("n", "<leader>mI", "<cmd>MoltenInterupt<CR>", { silent = true, desc = "Execute Cell" })
+vim.keymap.set("n", "<leader>mR", "<cmd>MoltenRestart!<CR>", { silent = true, desc = "Execute Cell" })
 vim.keymap.set(
   "n",
   "<leader>mn",
