@@ -24,6 +24,7 @@
 - [Terminal](#terminal)
 - [Essential Vim Motions](#essential-vim-motions)
 - [Kitty Terminal](#kitty-terminal)
+- [uv (Python Package Manager)](#uv-python-package-manager)
 
 ---
 
@@ -155,6 +156,8 @@
 | `<leader>cF` | n | Format range |
 | `<leader>cl` | n | LSP info |
 | `<leader>cR` | n | Restart LSP |
+| `<leader>cv` | n | Select Python venv |
+| `<leader>cV` | n | Select cached venv |
 
 ### Diagnostics
 
@@ -780,6 +783,77 @@
 | `Ctrl+Shift+P>N` | Insert line numbers |
 | `Ctrl+Shift+K` | Clear terminal |
 | `Ctrl+Shift+Delete` | Reset terminal |
+
+---
+
+## uv (Python Package Manager)
+
+> Fast Python package installer written in Rust (replacement for pip, virtualenv, pip-tools)
+
+### Project Setup
+
+| Command | Description |
+|---------|-------------|
+| `uv init myproject` | Create new project with pyproject.toml |
+| `uv venv` | Create .venv in current directory |
+| `uv venv --python 3.12` | Create venv with specific Python version |
+
+### Package Management
+
+| Command | Description |
+|---------|-------------|
+| `uv pip install pandas` | Install a package |
+| `uv pip install -r requirements.txt` | Install from requirements |
+| `uv pip install -e .` | Install current project (editable) |
+| `uv pip uninstall pandas` | Remove a package |
+| `uv pip list` | List installed packages |
+| `uv pip freeze > requirements.txt` | Export requirements |
+
+### Running Commands
+
+| Command | Description |
+|---------|-------------|
+| `uv run python script.py` | Run with project's venv |
+| `uv run pytest` | Run pytest with venv |
+| `uv run jupyter lab` | Run Jupyter with venv |
+
+### For Neovim/Molten Integration
+
+```bash
+# Install Jupyter kernel support
+uv pip install ipykernel
+
+# Register kernel for Molten (use project name)
+uv run python -m ipykernel install --user --name myproject
+
+# Install debugpy for DAP
+uv pip install debugpy
+```
+
+### Sync & Lock
+
+| Command | Description |
+|---------|-------------|
+| `uv lock` | Generate/update uv.lock from pyproject.toml |
+| `uv sync` | Install dependencies from uv.lock |
+| `uv sync --dev` | Include dev dependencies |
+
+### Tool Management
+
+| Command | Description |
+|---------|-------------|
+| `uv tool install ruff` | Install CLI tool globally |
+| `uv tool run black .` | Run tool without installing |
+| `uvx ruff check .` | Shorthand for `uv tool run` |
+
+### Useful Flags
+
+| Flag | Description |
+|------|-------------|
+| `--no-cache` | Skip cache |
+| `--upgrade` | Upgrade packages |
+| `--python 3.12` | Use specific Python |
+| `-p 3.11` | Shorthand for --python |
 
 ---
 
